@@ -20,9 +20,6 @@ module.exports = function camelcaseKeysDeep(obj) {
   if (typeof obj === "object") {
     return mapObj(obj, function(key, value) {
       var newKey = camelcase(key);
-      if (key !== newKey && newKey in obj) {
-        throw new Error("Camelcased key `" + newKey + "` would overwrite existing key of the given JSON object");
-      }
       return [newKey, camelcaseKeysDeep(value)];
     });
   }
